@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Horizon Tours & Travels | Kerala Tours & Travel Quotation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldBrand: {
+                            DEFAULT: '#046A38',
+                            dark: '#034d27',
+                            light: '#078a48',
+                        },
+                        goldBrand: {
+                            DEFAULT: '#D4AF37',
+                            dark: '#aa8c2c',
+                            light: '#e2c658',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(3, 77, 39, 0.95) 0%, rgba(2, 48, 24, 0.9) 100%), url('https://placehold.co/1920x1080/046A38/ffffff?text=Kerala+Backwaters+and+Hills') center/cover no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-goldBrand selection:text-slate-900">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emeraldBrand text-white px-6 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-goldBrand/30">
+        <i class="fa-solid fa-circle-check text-goldBrand text-xl"></i>
+        <div>
+            <h4 class="font-bold text-sm" id="toast-title">Success!</h4>
+            <p class="text-xs text-emerald-100" id="toast-message">Your inquiry has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="bg-emeraldBrand-dark text-emerald-100 text-xs py-2 px-4 sm:px-8 border-b border-goldBrand/20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fa-solid fa-phone text-goldBrand mr-2"></i> +91 8137810109 / +91 83010 72832</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-envelope text-goldBrand mr-2"></i> info@ajhorizontours.com</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-goldBrand/20 text-goldBrand px-3 py-0.5 rounded-full font-semibold border border-goldBrand/30">
+                    <i class="fa-solid fa-star text-xs mr-1"></i> Contact: Abel Talson
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emeraldBrand to-emeraldBrand-light flex items-center justify-center text-goldBrand shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-car-side text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-extrabold text-emeraldBrand-dark tracking-tight leading-none">AJ HORIZON</h1>
+                    <p class="text-[10px] tracking-widest text-goldBrand-dark font-bold mt-0.5 uppercase">Tours & Travels</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#home" class="text-emeraldBrand hover:text-goldBrand transition-colors">Home</a>
+                <a href="#sample-quotation" class="text-slate-600 hover:text-emeraldBrand transition-colors">Sample Quotation</a>
+                <a href="#itinerary" class="text-slate-600 hover:text-emeraldBrand transition-colors">Itinerary</a>
+                <a href="#pricing" class="text-slate-600 hover:text-emeraldBrand transition-colors">Pricing & Fares</a>
+                <a href="#inquiry" class="text-slate-600 hover:text-emeraldBrand transition-colors">Custom Quote</a>
+                <a href="#contact" class="text-slate-600 hover:text-emeraldBrand transition-colors">Contact</a>
+            </nav>
+
+            <!-- Call to action button -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="#inquiry" class="bg-gradient-to-r from-goldBrand to-goldBrand-dark text-slate-900 font-bold px-5 py-2.5 rounded-xl shadow-lg hover:shadow-goldBrand/20 hover:scale-[1.02] active:scale-95 transition-all text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Book Taxi / Quote</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-slate-700 hover:text-emeraldBrand text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-4 shadow-xl">
+            <a href="#home" class="block text-slate-700 font-medium hover:text-emeraldBrand">Home</a>
+            <a href="#sample-quotation" class="block text-slate-700 font-medium hover:text-emeraldBrand">Sample Quotation</a>
+            <a href="#itinerary" class="block text-slate-700 font-medium hover:text-emeraldBrand">Itinerary</a>
+            <a href="#pricing" class="block text-slate-700 font-medium hover:text-emeraldBrand">Pricing & Fares</a>
+            <a href="#inquiry" class="block text-slate-700 font-medium hover:text-emeraldBrand">Custom Quote</a>
+            <a href="#contact" class="block text-slate-700 font-medium hover:text-emeraldBrand">Contact Us</a>
+            <div class="pt-2">
+                <a href="#inquiry" class="block text-center bg-goldBrand text-slate-900 font-bold py-2.5 rounded-xl shadow">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-24 lg:py-32 relative overflow-hidden">
+        <!-- Decorative light blur -->
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-goldBrand/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-emeraldBrand-light/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-emerald-900/60 text-goldBrand px-4 py-2 rounded-full text-xs font-semibold border border-goldBrand/30 backdrop-blur-sm">
+                    <i class="fa-solid fa-sun text-goldBrand"></i>
+                    <span>Experience God's Own Country in Comfort</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    AJ Horizon <span class="text-goldBrand">Tours & Travels</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-emerald-100 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    Your premier travel companion across Kerala. From the misty hills of Munnar to the tranquil backwaters of Alleppey, we ensure every journey is memorable, comfortable, and safe.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#sample-quotation" class="bg-gradient-to-r from-goldBrand to-goldBrand-dark text-slate-900 font-bold px-8 py-4 rounded-xl shadow-xl hover:scale-105 transition-transform flex items-center justify-center space-x-3">
+                        <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                        <span>View Sample Quotation</span>
+                    </a>
+                    <a href="#inquiry" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl border border-white/20 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Request Custom Quote</span>
+                    </a>
+                </div>
+
+                <!-- Quick highlights -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-xl mx-auto lg:mx-0">
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-extrabold text-goldBrand">₹2,800</div>
+                        <div class="text-xs text-emerald-200 mt-0.5">Sedan Package / Day</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-extrabold text-goldBrand">4 Days</div>
+                        <div class="text-xs text-emerald-200 mt-0.5">Munnar & Alleppey Tour</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-extrabold text-goldBrand">24/7</div>
+                        <div class="text-xs text-emerald-200 mt-0.5">Reliable Support</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Quick Quote Card preview -->
+            <div class="lg:col-span-5">
+                <div class="bg-white text-slate-800 rounded-3xl shadow-2xl p-6 sm:p-8 border border-slate-100 relative">
+                    <div class="absolute -top-3 right-6 bg-goldBrand text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow">
+                        Featured Itinerary
+                    </div>
+                    <h3 class="text-xl font-bold text-emeraldBrand-dark mb-4 flex items-center space-x-2">
+                        <i class="fa-solid fa-route text-emeraldBrand"></i>
+                        <span>Kerala Scenic Tour</span>
+                    </h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start space-x-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-calendar-days text-emeraldBrand mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-slate-900 block">Travel Dates</span>
+                                <span class="text-slate-600">28 Nov – 02 Dec 2026</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-car text-emeraldBrand mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-slate-900 block">Vehicle & Package</span>
+                                <span class="text-slate-600">Sedan (8 hrs / 80 km daily package)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-map-location-dot text-emeraldBrand mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-slate-900 block">Route</span>
+                                <span class="text-slate-600">Kochi - Munnar - Alleppey - Kochi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-500 block">Estimated Total</span>
+                            <span class="text-2xl font-extrabold text-emeraldBrand">₹11,200</span>
+                        </div>
+                        <a href="#sample-quotation" class="bg-emeraldBrand hover:bg-emeraldBrand-dark text-white font-semibold px-5 py-2.5 rounded-xl shadow transition-colors text-sm">
+                            View Details <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Quotation & Highlights Section -->
+    <section id="sample-quotation" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emeraldBrand font-bold text-sm tracking-wider uppercase bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100">Official Travel Quotation</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">Sample Tour Package Details</h2>
+                <p class="text-slate-600">Review the verified quotation details from our recent client inquiry, highlighting our transparent pricing and seamless travel arrangements.</p>
+            </div>
+
+            <!-- Quotation Summary Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-100 text-emeraldBrand rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Vehicle Selected</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1">Sedan</h4>
+                    <p class="text-sm text-slate-600 mt-1">8 hours / 80 km daily package allotment.</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-100 text-goldBrand-dark rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-calendar-alt"></i>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Travel Dates</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1">28 Nov - 02 Dec 2026</h4>
+                    <p class="text-sm text-slate-600 mt-1">4 Full Days of immersive exploration.</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-100 text-emeraldBrand rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Main Route</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1">Kochi to Kochi</h4>
+                    <p class="text-sm text-slate-600 mt-1">Via Munnar & Alleppey backwaters.</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-100 text-goldBrand-dark rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Airport Drop</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1">02 Dec, 2:00 AM</h4>
+                    <p class="text-sm text-slate-600 mt-1">Early morning departure drop arranged.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proposed Itinerary Section -->
+    <section id="itinerary" class="py-20 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-emeraldBrand font-bold text-sm tracking-wider uppercase bg-white px-4 py-1.5 rounded-full border border-slate-200 shadow-sm">Day-by-Day Plan</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">Proposed Itinerary</h2>
+                <p class="text-slate-600">A carefully curated schedule designed for comfort, sightseeing, and relaxation.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Day 1 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-emeraldBrand text-white font-bold px-5 py-3 rounded-xl text-center min-w-[140px] shadow-sm">
+                        <span class="block text-xs uppercase tracking-wider text-emerald-200">Day 1</span>
+                        <span class="text-lg">28 Nov</span>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-car-tunnel text-emeraldBrand"></i>
+                            <span>Pickup from Kochi & Drive to Munnar</span>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Afternoon pickup from Kochi by our professional chauffeur in your designated Sedan. Enjoy the scenic drive ascending towards the lush green tea gardens of Munnar with refreshing pitstops along the way.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-emeraldBrand text-white font-bold px-5 py-3 rounded-xl text-center min-w-[140px] shadow-sm">
+                        <span class="block text-xs uppercase tracking-wider text-emerald-200">Day 2</span>
+                        <span class="text-lg">29 Nov</span>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-mountain-sun text-emeraldBrand"></i>
+                            <span>Munnar Sightseeing</span>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Full day dedicated to exploring Munnar's iconic attractions including Eravikulam National Park, Mattupetty Dam, Echo Point, Tea Museum, and panoramic viewpoints surrounded by mist-clad hills.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-emeraldBrand text-white font-bold px-5 py-3 rounded-xl text-center min-w-[140px] shadow-sm">
+                        <span class="block text-xs uppercase tracking-wider text-emerald-200">Day 3</span>
+                        <span class="text-lg">30 Nov</span>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-water text-emeraldBrand"></i>
+                            <span>Travel from Munnar to Alleppey</span>
+                        </h3>
+                        <p class="text-slate-600 relaxed">
+                            Scenic morning drive from the hills of Munnar down to the enchanting backwater paradise of Alleppey. Check in and experience the serene canals, coconut groves, and traditional village life.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-emeraldBrand text-white font-bold px-5 py-3 rounded-xl text-center min-w-[140px] shadow-sm">
+                        <span class="block text-xs uppercase tracking-wider text-emerald-200">Day 4</span>
+                        <span class="text-lg">01 Dec</span>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-ship text-emeraldBrand"></i>
+                            <span>Alleppey Sightseeing & Return to Kochi</span>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Enjoy morning leisure around Alleppey beach or backwaters, followed by a comfortable evening return drive back to Kochi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-goldBrand text-slate-900 font-bold px-5 py-3 rounded-xl text-center min-w-[140px] shadow-sm">
+                        <span class="block text-xs uppercase tracking-wider text-slate-800">Day 5</span>
+                        <span class="text-lg">02 Dec</span>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                            <i class="fa-solid fa-plane text-emeraldBrand"></i>
+                            <span>Airport Drop (Early Morning)</span>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Prompt transfer and drop off at the airport at approximately 2:00 AM for your departure flight, concluding your unforgettable Kerala journey.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Fare Breakdown Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emeraldBrand font-bold text-sm tracking-wider uppercase bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100">Transparent & Fair</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-4">Taxi Fare Details & Breakdown</h2>
+                <p class="text-slate-600">No hidden costs. Clear daily package structures and extra usage rates.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Fare Table -->
+                <div class="lg:col-span-7 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center space-x-2">
+                        <i class="fa-solid fa-receipt text-emeraldBrand"></i>
+                        <span>Quotation Breakdown</span>
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    <th class="py-3 px-4">Description</th>
+                                    <th class="py-3 px-4 text-right">Rate / Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm">
+                                <tr>
+                                    <td class="py-4 px-4 font-medium text-slate-900">Sedan package (8 hours / 80 km)</td>
+                                    <td class="py-4 px-4 text-right font-semibold text-slate-700">₹2,800 per day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-4 font-medium text-slate-900">Estimated package (4 days)</td>
+                                    <td class="py-4 px-4 text-right font-semibold text-slate-700">₹11,200</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-4 font-medium text-slate-900">Extra hour charge</td>
+                                    <td class="py-4 px-4 text-right font-semibold text-slate-700">₹240 per hour</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-4 font-medium text-slate-900">Extra kilometre charge</td>
+                                    <td class="py-4 px-4 text-right font-semibold text-slate-700">₹120 per km</td>
+                                </tr>
+                                <tr class="bg-emerald-50 font-extrabold text-emeraldBrand-dark">
+                                    <td class="py-4 px-4 text-base">ESTIMATED BASIC PACKAGE TOTAL</td>
+                                    <td class="py-4 px-4 text-right text-xl">₹11,200</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Terms & Notes -->
+                <div class="lg:col-span-5 bg-emeraldBrand-dark text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-goldBrand/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <h3 class="text-xl font-bold text-goldBrand mb-6 flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Terms & Important Notes</span>
+                    </h3>
+                    <ul class="space-y-4 text-sm text-emerald-100 font-light leading-relaxed">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check text-goldBrand mt-1"></i>
+                            <span>The estimate is calculated as 4 daily packages at ₹2,800 each. Afternoon pickup on 28 Nov & early-morning airport drop on 02 Dec are subject to confirmation of duty hours and billing arrangement.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check text-goldBrand mt-1"></i>
+                            <span>Extra hours and kilometres beyond package limits will be billed at the rates shown in the breakdown.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check text-goldBrand mt-1"></i>
+                            <span>Toll, parking, state permits and other applicable incidental charges are extra and to be paid by the guest.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check text-goldBrand mt-1"></i>
+                            <span>Final fare may be revised based on the confirmed final itinerary and actual usage during the tour.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Booking & Inquiry Form -->
+    <section id="inquiry" class="py-20 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 border border-slate-200 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emeraldBrand/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <span class="text-emeraldBrand font-bold text-sm tracking-wider uppercase bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100">Plan Your Journey</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">Request Custom Tour / Quotation</h2>
+                    <p class="text-slate-600 text-sm">Fill in your details below and our travel desk will get back to you promptly with a tailored itinerary and fare estimate.</p>
+                </div>
+
+                <form id="booking-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Full Name *</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm" placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm" placeholder="+91 98765 43210">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Travel Dates *</label>
+                            <input type="text" id="dates" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm" placeholder="e.g. 28 Nov - 02 Dec 2026">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Vehicle Preference *</label>
+                            <select id="vehicle" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm">
+                                <option value="Sedan">Sedan (Dzire / Etios - ₹2,800/day)</option>
+                                <option value="SUV">SUV (Innova / Ertiga)</option>
+                                <option value="Traveller">Tempo Traveller (12-26 Seater)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Route / Destinations *</label>
+                        <input type="text" id="route" required value="Kochi - Munnar - Alleppey - Kochi" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm" placeholder="e.g. Kochi - Munnar - Alleppey - Kochi">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Special Requirements / Notes</label>
+                        <textarea id="notes" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emeraldBrand focus:bg-white outline-none transition-all text-sm" placeholder="Mention any specific pickup time, hotel bookings, or airport drop details..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-emeraldBrand to-emeraldBrand-light hover:from-emeraldBrand-dark hover:to-emeraldBrand text-white font-bold py-4 rounded-xl shadow-xl transition-all transform active:scale-[0.99] text-base flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Submit Inquiry & Request Quotation</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & About Section -->
+    <section id="contact" class="py-20 bg-emeraldBrand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-goldBrand flex items-center justify-center text-slate-900 font-extrabold shadow-md">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight">AJ HORIZON</span>
+                </div>
+                <p class="text-emerald-100 text-sm leading-relaxed font-light">
+                    Your reliable partner for Kerala tours and travels. Delivering safe, comfortable, and memorable travel experiences across God's Own Country.
+                </p>
+                <div class="text-xs text-goldBrand font-semibold pt-2">
+                    Proprietor / Contact: Abel Talson
+                </div>
+                <div class="text-xs text-emerald-200">
+                    Thank you for choosing AJ Horizon Tours and Travels.
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-lg font-bold text-goldBrand">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-emerald-100">
+                    <li><a href="#home" class="hover:text-goldBrand transition-colors">Home</a></li>
+                    <li><a href="#sample-quotation" class="hover:text-goldBrand transition-colors">Sample Quotation</a></li>
+                    <li><a href="#itinerary" class="hover:text-goldBrand transition-colors">Proposed Itinerary</a></li>
+                    <li><a href="#pricing" class="hover:text-goldBrand transition-colors">Pricing & Fares</a></li>
+                    <li><a href="#inquiry" class="hover:text-goldBrand transition-colors">Custom Quote</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-lg font-bold text-goldBrand">Contact Information</h4>
+                <div class="space-y-3 text-sm text-emerald-100">
+                    <p class="flex items-center space-x-3">
+                        <i class="fa-solid fa-user-tie text-goldBrand"></i>
+                        <span class="font-bold text-white">Abel Talson</span>
+                    </p>
+                    <p class="flex items-center space-x-3">
+                        <i class="fa-solid fa-phone text-goldBrand"></i>
+                        <span>+91 8137810109</span>
+                    </p>
+                    <p class="flex items-center space-x-3">
+                        <i class="fa-solid fa-phone text-goldBrand"></i>
+                        <span>+91 83010 72832</span>
+                    </p>
+                    <p class="flex items-center space-x-3">
+                        <i class="fa-solid fa-envelope text-goldBrand"></i>
+                        <span>info@ajhorizontours.com</span>
+                    </p>
+                    <p class="flex items-start space-x-3">
+                        <i class="fa-solid fa-location-dot text-goldBrand mt-1"></i>
+                        <span>Kochi, Kerala, India</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 mt-16 pt-8 border-t border-emerald-900 text-center text-xs text-emerald-200">
+            &copy; 2026 AJ Horizon Tours & Travels. All rights reserved. Designed with care for Kerala tourism.
+        </div>
+    </section>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Booking Form Submission handler
+        const bookingForm = document.getElementById('booking-form');
+        const toast = document.getElementById('toast');
+        const toastTitle = document.getElementById('toast-title');
+        const toastMessage = document.getElementById('toast-message');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            
+            // Show custom toast notification
+            toastTitle.textContent = `Thank you, ${name}!`;
+            toastMessage.textContent = 'Your inquiry has been sent to AJ Horizon Tours. We will contact you shortly.';
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            bookingForm.reset();
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
